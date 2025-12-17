@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>springSecurity</title>
+</head>
+<body>
+<h1>Test Hello</h1>
+
+<!--
+    Lien Thymeleaf vers l’endpoint sécurisé /hello
+
+    th:href="@{/hello}" :
+    → Génère automatiquement l’URL correcte
+    → Redirige vers une page protégée par Spring Security
+-->
+<p>Ici <a th:href="@{/hello}">here</a> Endpoint de securité</p>
+</body>
+</html>

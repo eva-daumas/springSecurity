@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Secured Endpoint</title>
+</head>
+<body>
+
+<!--
+    th:inline="text" permet d'utiliser des expressions Thymeleaf
+    directement dans le texte HTML
+-->
+<h1 th:inline="text">
+    Hello
+
+    <!--
+       sec:authentication="name"
+       Affiche le nom de l'utilisateur actuellement authentifié
+       (username Spring Security)
+
+       th:remove="tag"
+       Supprime la balise <span> après le rendu HTML
+       → seul le texte est affiché
+   -->
+
+    <span th:remove="tag" sec:authentification="name"></span>
+    !
+</h1>
+
+
+<!-- Message indiquant que la page est protégée -->
+<h2>This is a secured endpoint</h2>
+
+<!--
+    Formulaire de déconnexion Spring Security
+    th:action="@{/logout}" :
+        génère automatiquement l'URL /logout
+
+    method="POST" :
+        obligatoire pour la déconnexion Spring Security
+-->
+
+<form th:action="@{/logout}" method="POST">
+    <!-- Bouton de déconnexion -->
+      <input type="submit" value="Sign Out">
+             </form>
+</body>
+</html>

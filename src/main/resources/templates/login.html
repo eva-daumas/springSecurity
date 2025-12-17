@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+
+<!--
+    Message d’erreur affiché si la connexion a échoué
+
+    ${param.error} :
+    → Spring Security ajoute automatiquement ?error
+      dans l’URL quand l’authentification échoue
+-->
+    <div th:if="${param.error}">
+        Invalid username or password!
+    </div>
+
+<!--
+    Message affiché après une déconnexion réussie
+
+    ${param.logout} :
+    → Spring Security ajoute ?logout dans l’URL après logout
+-->
+    <div th:if="${param.logout}">
+        You have been logged out!
+    </div>
+
+<!--
+    Formulaire de connexion Spring Security
+
+    th:action="@{/login}" :
+    → Endpoint par défaut utilisé par Spring Security
+
+    method="POST" :
+    → Obligatoire pour l’authentification
+-->
+    <form th:action="@{/login}" method="POST">
+
+        <!-- Champ email / username -->
+        <div>
+            <label for="email">email  </label>
+            <!--
+            name="username" :
+            → DOIT s’appeler "username"
+            → Spring Security utilise ce nom par défaut
+        -->
+            <input type="text" name="username" id="email" placeholder="your email">
+        </div>
+
+        <!-- Champ mot de passe -->
+        <div>
+            <label for="password"> Password: </label>
+            <!--
+           name="password" :
+           → DOIT s’appeler "password"
+           → Spring Security utilise ce nom par défaut
+       -->
+            <input type="password" name="password" id="password" placeholder="your password">
+        </div>
+        <div>
+            <input type="submit" value="Sing in">
+        </div>
+</form>
+</body>
+</html>
